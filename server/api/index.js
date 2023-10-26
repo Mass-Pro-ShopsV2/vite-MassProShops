@@ -1,12 +1,18 @@
-const router = require('express').Router();
+import express from 'express';
+import usersRouter from './users.js';
+import productsRouter from './products.js';
+import checkoutRouter from './checkout.js';
 
-router.use('/users', require('./users'));
-router.use('/products', require('./products'));
-router.use('/stripe', require('./checkout'))
+const router = express.Router();
+
+router.use('/users', usersRouter);
+router.use('/products', productsRouter);
+router.use('/stripe', checkoutRouter);
 
 router.use((req, res, next) => {
-    const error = new Error('Not Found');
-    error.status = 404;
-    next(error);
+  const error = new Error('Not Found, in index');
+  error.status = 404;
+  next(error);
 });
-module.exports = router;
+
+export default router;

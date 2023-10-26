@@ -1,8 +1,22 @@
 import path from 'path';
 import express from 'express';
 import morgan from 'morgan';
+import cors from 'cors';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
 
 const app = express();
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+const corsOptions = {
+    origin: 'http://localhost:5173', // Replace with the allowed origin(s)
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    optionsSuccessStatus: 204,
+  };
+  
+app.use(cors());
 
 // Logging middleware
 app.use(morgan('dev'));
@@ -11,9 +25,13 @@ app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.use((req, res, next) => {
+    console.log('Received a request:', req.method, req.url);
+    next();
+  });
 // Auth and API routes
-import authRouter from './auth.mjs'; // Use the appropriate file extension for ES modules
-import apiRouter from './api/index.mjs'; // Use the appropriate file extension for ES modules
+import authRouter from './auth/index.js'; // Use the appropriate file extension for ES modules
+import apiRouter from './api/index.js'; // Use the appropriate file extension for ES modules
 
 app.use('/auth', authRouter);
 app.use('/api', apiRouter);

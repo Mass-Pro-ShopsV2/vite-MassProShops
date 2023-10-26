@@ -1,0 +1,67 @@
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
+
+export const editProduct = createAsyncThunk('editProduct',
+async (newInfo) => {
+    const token = window.localStorage.getItem("token");
+    try{
+        const { data } = await axios.put(`http://localhost:8080/api/products/${newInfo.id}`,newInfo, {
+            headers: {
+                authorization: token,
+            },
+        });
+        return data;
+    }catch(err){
+        console.log('editProduct error',err)
+    }
+})
+
+export const deleteProduct = createAsyncThunk('deleteProduct',
+async (id) => {
+    const token = window.localStorage.getItem("token");
+    try{
+        const { data } = await axios.delete(`http://localhost:8080/api/products/${id}`, {
+            headers: {
+                authorization: token,
+            },
+        })
+        return data
+    }catch(err){
+        console.log('delete product error:',err)
+    }
+})
+
+export const addProduct = createAsyncThunk('addProduct',
+async (newInfo) => {
+    const token = window.localStorage.getItem("token");
+    try{
+        const { data } = await axios.post('http://localhost:8080/api/products',newInfo,{
+            headers: {
+                authorization: token,
+            },
+        })
+        console.log(data)
+        return data
+    }catch(err){
+        console.log('add product error', err)
+    }
+})
+
+const editProductSlice = createSlice({
+    name:'editProduct',
+    initialState:{},
+    extraReducers:(builder) => {
+        builder.addCase(editProduct.fulfilled, (state,action) => {
+            state = action.payload
+            return action.payload
+        }),
+        builder.addCase(deleteProduct.fulfilled, (state,action) => {
+            state =[]
+        }),
+        builder.addCase(addProduct.fulfilled, (state,action) => {
+            return action.payload
+        })
+    }
+})
+
+export default editProductSlice.reducer;

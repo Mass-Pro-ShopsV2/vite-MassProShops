@@ -1,12 +1,11 @@
 import  db from './db/db.js'; // Use the appropriate file extension for ES modules
 import { config as dotenvConfig } from 'dotenv';
-import express from 'express';
+import app from './app.js'
 import seed from '../script/seed.js';
 
 dotenvConfig();
 
-const PORT = process.env.PORT || 8080;
-const app = express();
+const PORT = 8080;
 
 const init = async () => {
     try {
