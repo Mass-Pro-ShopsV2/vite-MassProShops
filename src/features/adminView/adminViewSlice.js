@@ -8,7 +8,7 @@ export const fetchUsers = createAsyncThunk(
         const token = window.localStorage.getItem('token')
         try {
             if (token) {
-            const {data} = await axios.get(`http://localhost:8080/api/users`,{
+            const {data} = await axios.get(`https://mass-pro-shops-pjot.onrender.com/api/users`,{
                 headers: {
                     authorization: token,
                 },
@@ -24,7 +24,7 @@ export const fetchUsers = createAsyncThunk(
 export const fetchProducts = createAsyncThunk(
     "products", async () => {
         try {
-            const {data} = await axios.get(`http://localhost:8080/api/products`)
+            const {data} = await axios.get(`https://mass-pro-shops-pjot.onrender.com/api/products`)
             return data
             
         } catch (err) {

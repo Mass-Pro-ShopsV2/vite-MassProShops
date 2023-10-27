@@ -4,7 +4,7 @@ import axios from 'axios';
 
 export const fetchAllProducts = createAsyncThunk('products/all', async () => {
     try {
-        const { data } = await axios.get('http://localhost:8080/api/products');
+        const { data } = await axios.get('https://mass-pro-shops-pjot.onrender.com/api/products');
         return data;
     } catch (error) {
         console.log('fetchAllProducts', error);

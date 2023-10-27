@@ -13,7 +13,7 @@ export const me = createAsyncThunk('auth/me', async () => {
     const token = window.localStorage.getItem(TOKEN);
     try {
         if (token) {
-            const res = await axios.get('http://localhost:8080/auth/me', {
+            const res = await axios.get('https://mass-pro-shops-pjot.onrender.com/auth/me', {
                 headers: {
                     authorization: token,
                 },
@@ -36,7 +36,7 @@ export const authenticate = createAsyncThunk(
     async ({ username, password, name, address, method }, thunkAPI) => {
         console.log('in authenticate')
         try {
-            const res = await axios.post(`http://localhost:8080/auth/${method}`, {
+            const res = await axios.post(`https://mass-pro-shops-pjot.onrender.com/auth/${method}`, {
                 address,
                 name,
                 username,

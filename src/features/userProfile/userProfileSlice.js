@@ -5,7 +5,7 @@ export const fetchSingleUser = createAsyncThunk(
     "singleUser", async (userId) => {
         const token = window.localStorage.getItem("token");
         try {
-            const {data} = await axios.get(`http://localhost:8080/api/users/${userId}`, {
+            const {data} = await axios.get(`https://mass-pro-shops-pjot.onrender.com/api/users/${userId}`, {
                 headers: {
                     authorization: token,
                 },
@@ -21,7 +21,7 @@ export const editUser = createAsyncThunk(
     "editUser", async (userId) => {
         const token = window.localStorage.getItem("token");
         try {
-            const {data} = await axios.put(`http://localhost:8080/api/users/${userId.id}`, userId, {
+            const {data} = await axios.put(`https://mass-pro-shops-pjot.onrender.com/api/users/${userId.id}`, userId, {
                 headers: {
                     authorization: token,
                 }
@@ -37,7 +37,7 @@ export const deleteUser = createAsyncThunk(
     "deleteUser", async (userId) => {
         const token = window.localStorage.getItem("token");
         try {
-            const {data} = await axios.delete(`http://localhost:8080/api/users/${userId}`,{
+            const {data} = await axios.delete(`https://mass-pro-shops-pjot.onrender.com/api/users/${userId}`,{
                 headers: {
                     authorization: token,
                 }
@@ -53,7 +53,7 @@ export const addUser = createAsyncThunk(
     "addUser", async (newUser) => {
         const token = window.localStorage.getItem("token");
         try {
-            const {data} = await axios.post(`http://localhost:8080/api/users/`, newUser, {
+            const {data} = await axios.post(`https://mass-pro-shops-pjot.onrender.com/api/users/`, newUser, {
                 headers: {
                     authorization: token,
                 }

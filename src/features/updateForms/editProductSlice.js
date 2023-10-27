@@ -5,7 +5,7 @@ export const editProduct = createAsyncThunk('editProduct',
 async (newInfo) => {
     const token = window.localStorage.getItem("token");
     try{
-        const { data } = await axios.put(`http://localhost:8080/api/products/${newInfo.id}`,newInfo, {
+        const { data } = await axios.put(`https://mass-pro-shops-pjot.onrender.com/products/${newInfo.id}`,newInfo, {
             headers: {
                 authorization: token,
             },
@@ -20,7 +20,7 @@ export const deleteProduct = createAsyncThunk('deleteProduct',
 async (id) => {
     const token = window.localStorage.getItem("token");
     try{
-        const { data } = await axios.delete(`http://localhost:8080/api/products/${id}`, {
+        const { data } = await axios.delete(`https://mass-pro-shops-pjot.onrender.com/api/products/${id}`, {
             headers: {
                 authorization: token,
             },
@@ -35,7 +35,7 @@ export const addProduct = createAsyncThunk('addProduct',
 async (newInfo) => {
     const token = window.localStorage.getItem("token");
     try{
-        const { data } = await axios.post('http://localhost:8080/api/products',newInfo,{
+        const { data } = await axios.post('https://mass-pro-shops-pjot.onrender.com/api/products',newInfo,{
             headers: {
                 authorization: token,
             },
