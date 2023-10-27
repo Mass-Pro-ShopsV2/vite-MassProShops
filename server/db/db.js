@@ -1,8 +1,11 @@
 import { Sequelize } from 'sequelize';
 import pkg from '../../package.json' assert { type: "json" };
+import { config as dotenvConfig } from 'dotenv';
 
-const databaseName = pkg.name + (process.env.NODE_ENV === 'test' ? '-test' : '');
+dotenvConfig();
 
+const databaseName = process.env.DATABASE_NAME || pkg.name + (process.env.NODE_ENV === 'test' ? '-test' : '');
+console.log(databaseName, process.env.DATABASE_URL)
 const config = {
   logging: false
 };
@@ -20,7 +23,7 @@ if (process.env.DATABASE_URL) {
 }
 
 const db = new Sequelize(
-  process.env.DATABASE_URL || `postgres://localhost:5432/${databaseName}`,
+  process.env.DATABASE_URL + "?sslmode=require" || `postgres://localhost:5432/${databaseName}`,
   config
 );
 
