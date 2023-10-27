@@ -14,7 +14,7 @@ const Navbar = () => {
 
   const logoutAndRedirectHome = () => {
     dispatch(logout());
-    navigate('/home');
+    navigate('/');
   };
 
   //selecting logged in user:
