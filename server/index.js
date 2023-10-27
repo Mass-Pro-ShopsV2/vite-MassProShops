@@ -5,7 +5,7 @@ import seed from '../script/seed.js';
 
 dotenvConfig();
 
-const PORT = 8080;
+const PORT = process.env.PORT || 8080;
 
 const init = async () => {
     try {
