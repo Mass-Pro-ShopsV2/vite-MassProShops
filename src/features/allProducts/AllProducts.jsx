@@ -73,7 +73,7 @@ const AllProducts = () => {
                                 </div>
                             ))
                     ) : (
-                        <h3>no data</h3>
+                        <h3>Loading... This may take a couple of minutes</h3>
                     )}
                 </div>
             </div>
