@@ -29,7 +29,7 @@ const Navbar = () => {
   
   return (
     <div className='navbar'>
-      <Link to='/home'>
+      <Link to='/'>
         <img 
         className='navbar__logo'
         src='/images/mass.jpg' 
